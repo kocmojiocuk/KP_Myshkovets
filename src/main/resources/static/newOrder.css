@@ -1,0 +1,48 @@
+body{
+    background: #adadb1;
+}
+
+.new-order-input{
+    width: 500px;
+    margin: auto;
+}
+
+.new-order-label{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.new-order-container{
+    width: 100%;
+    text-align: center;
+    margin-left: 400px;
+    padding-top: 30px;
+}
+
+.create-form{
+    margin-top: 30px;
+}
+
+.new-order-submit{
+    background: #2a2c2d;
+    border-color: #2a2c2d;
+    width: 500px;
+}
+
+.new-order-submit:hover{
+    background: white;
+    color: black;
+    border-color: #2a2c2d;
+}
+
+.successMessage{
+    color: #036803;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+.errorMessage{
+    color: red;
+    margin-bottom: 0;
+    font-size: 15px;
+}

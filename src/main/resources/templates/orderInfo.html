@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Страница создания заявки</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/orderInfo.css}" rel="stylesheet"/>
+    <link th:href="@{/menu.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap.min.js}"></script>
+</head>
+<body>
+    <th:block th:insert="menu :: menu"/>
+    <div class="container order-info-container">
+        <h2 th:text="'Заявка №' + ${order.number}"></h2>
+        <div class="form-group">
+            <label class="new-order-label">Заголовок</label>
+            <input type="text" class="form-control new-order-input" th:value="${order.title}" readonly>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Тема</label>
+            <input type="text" class="form-control new-order-input" th:value="${order.theme.getDisplayText()}" readonly>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Описание</label>
+            <textarea class="form-control new-order-input" rows="4" th:text="${order.description}" readonly></textarea>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Срочность заявки</label>
+            <input type="text" class="form-control new-order-input" th:value="${order.quicklyStatus.getDisplayText()}" readonly>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Дата и время создания заявки</label>
+            <h5 class="new-order-input" th:text="${#temporals.format(order.createDateTime, 'dd-MM-yyyy HH:mm:ss')}"></h5>
+        </div>
+        <div class="form-group" th:if="${order.closeDateTime != null}">
+            <label class="new-order-label">Дата и время закрытия заявки</label>
+            <h5 class="new-order-input" th:text="${#temporals.format(order.closeDateTime, 'dd-MM-yyyy HH:mm:ss')}"></h5>
+        </div>
+        <form action="/closeorder" method="post" th:if="${!session.isUser && order.closeDateTime == null}">
+            <div class="form-group" th:if="${!session.isUser}">
+                <label class="new-order-label">Ответ на заявку</label>
+                <textarea class="form-control new-order-input" rows="5" name="answer" placeholder="Введите ответ на заявку"></textarea>
+            </div>
+            <input type="hidden" name="orderNumber" th:value="${order.number}">
+            <button type="submit" class="btn btn-primary new-order-submit">Закрыть заявку</button>
+        </form>
+        <div class="form-group" th:if="${order.closeDateTime != null}">
+            <label class="new-order-label">Ответ на заявку</label>
+            <textarea class="form-control new-order-input" rows="5" th:text="${order.answer}" readonly></textarea>
+        </div>
+    </div>
+</body>

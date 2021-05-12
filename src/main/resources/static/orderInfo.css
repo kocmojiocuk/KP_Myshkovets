@@ -1,0 +1,20 @@
+body{
+    background: #adadb1;
+}
+
+.order-info-container{
+    width: 100%;
+    text-align: center;
+    margin-left: 400px;
+    padding-top: 30px;
+}
+
+.new-order-label{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.new-order-input{
+    width: 500px;
+    margin: auto;
+}

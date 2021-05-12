@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Страница заявок</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/orders.css}" rel="stylesheet"/>
+    <link th:href="@{/menu.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap.min.js}"></script>
+</head>
+<body>
+<th:block th:insert="menu :: menu"/>
+<div class="container orders-container">
+    <h2 th:text="${ordersTitle}"></h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Номер</th>
+            <th scope="col">Заголовок</th>
+            <th scope="col">Тема</th>
+            <th scope="col">Дата и время создания</th>
+            <th scope="col" th:if="${status == 'CLOSE'}">Дата и время закрытия</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="order : ${orders}">
+                <tr>
+                    <td th:text="${order.number}"></td>
+                    <td th:text="${order.title}"></td>
+                    <td th:text="${order.theme.getDisplayText()}"></td>
+                    <td th:text="${#temporals.format(order.createDateTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                    <td th:text="${#temporals.format(order.closeDateTime, 'dd-MM-yyyy HH:mm:ss')}" th:if="${status == 'CLOSE'}"></td>
+                    <td><a th:href="@{'/orderinfo?number=' + ${order.number}}">Просмотреть</a></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+</body>

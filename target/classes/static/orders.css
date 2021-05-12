@@ -1,0 +1,21 @@
+body{
+    background: #adadb1;
+}
+
+.orders-container{
+    width: 100%;
+    text-align: center;
+    margin-left: 400px;
+    padding-top: 30px;
+}
+
+.table-striped{
+    margin-top: 60px;
+}
+
+tr{
+    text-align: center;
+}
+td{
+    text-align: center;
+}

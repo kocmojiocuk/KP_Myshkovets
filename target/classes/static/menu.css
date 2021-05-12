@@ -1,0 +1,37 @@
+.title{
+    color: white;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.navbar-container {
+    background: #5e5f5f;
+    height: 100vh;
+    text-align: center;
+    width: 400px;
+    float: left;
+}
+.navbar-container .navbar {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: 100%;
+    float: left;
+}
+
+.navbar{
+    margin-left: 90px;
+}
+.nav-link{
+    color: white;
+    text-transform: uppercase;
+}
+
+.nav-link:hover{
+    color: black;
+    text-transform: uppercase;
+}
+.nav-item{
+    border-bottom: 2px solid black;
+}

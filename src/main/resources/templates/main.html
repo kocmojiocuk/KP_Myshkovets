@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Главная страница</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+    <link th:href="@{/menu.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap.min.js}"></script>
+</head>
+<body>
+    <th:block th:insert="menu :: menu"/>
+</body>

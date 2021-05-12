@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Страница создания заявки</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/newOrder.css}" rel="stylesheet"/>
+    <link th:href="@{/menu.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap.min.js}"></script>
+</head>
+<body>
+<th:block th:insert="menu :: menu"/>
+<div class="container new-order-container">
+    <h2>Создание новой заявки</h2>
+    <label class="successMessage" th:text="${createOrderSuccessMessage}"></label>
+    <form class="create-form" action="/createorder" method="post">
+        <div class="form-group">
+            <label class="new-order-label">Заголовок</label>
+            <input type="text" class="form-control new-order-input" name="title" placeholder="Введите заголовок (до 50 символов)">
+            <label class="errorMessage" th:text="${titleErrorMessage}"></label>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Тема заявки</label>
+            <select class="form-control new-order-input" name="theme" required>
+                <option th:each="theme : ${T(by.bsuir.courseproject.modelMyshkovetsDV.OrderTheme).values()}"
+                        th:value="${theme}" th:text="${theme.getDisplayText()}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Описание проблемы</label>
+            <textarea class="form-control new-order-input" rows="4" name="description" placeholder="Введите подробное описание возникшей проблемы"></textarea>
+            <label class="errorMessage" th:text="${descriptionErrorMessage}"></label>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Срочность заявки</label>
+            <select class="form-control new-order-input" name="quickly" required>
+                <option th:each="quickly : ${T(by.bsuir.courseproject.modelMyshkovetsDV.QuicklyOrderStatus).values()}"
+                        th:value="${quickly}" th:text="${quickly.getDisplayText()}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Ваше ФИО</label>
+            <h5 class="new-order-input" th:text="${session.user.fio}"></h5>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Ваш номер телефона</label>
+            <h5 class="new-order-input" th:text="${session.user.phone}"></h5>
+        </div>
+        <div class="form-group">
+            <label class="new-order-label">Ваш отдел</label>
+            <h5 class="new-order-input" th:text="${session.user.department.getDisplayText()}"></h5>
+        </div>
+        <button type="submit" class="btn btn-primary new-order-submit">Создать заявку</button>
+    </form>
+</div>
+</body>
